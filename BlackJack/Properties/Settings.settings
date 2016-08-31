@@ -1,0 +1,23 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BlackJack.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ImageDir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\Thomas\Desktop\BlackJack\BlackJack\Cards</Value>
+    </Setting>
+    <Setting Name="BackImage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\Thomas\Desktop\BlackJack\BlackJack\wsu.gif</Value>
+    </Setting>
+    <Setting Name="Delay" Type="System.Double" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Hands" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">
+                 34733701 50071963 151963789 133303038 34733701 93142888 163587049 166624583 191000781 31539352	99215278 68425847 79275868 29196760	26639513 176741059 194780314	134197934	193137181	41120770	41997323 11014750	127464864	3253767	193413355	102989779	30681227	1753420	73745315	78270889	192529794 98584171	102451926	167139376	209351571	18523855	154352131	190271229	146462119	195501290	123372982 134533417	50071963	181861684	49890158	184700510	21544165	55365583	96707564	42724389	32306963 2019335	41319815	191551156	191771470	40558321	23341235	63518363	148137840	54445714	82424520 66675411	68371449	52526782	43284620	205317600	181917148	46917569	24189249	87053736	46356738 121245779	67243417	171444996	74594700	84477729	152002356	143438857	148505061	84191107	133881354 79248892	79239670	670489	58000411	157586715	21176873	121492953	58285012	39282985	78670329 128030288	45967050	92048632	58127621	185301479	187914737	131506720	156309335	200538968	179501665
+              </Value>
+    </Setting>
+    <Setting Name="MindLogger" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Users\Thomas\Desktop\BlackJack\MindLogging\bin\Debug\MindLogging.exe</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

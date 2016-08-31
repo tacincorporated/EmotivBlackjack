@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AA48B662-D11E-4E9F-B082-F2582CD5D7DB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlackJack</RootNamespace>
+    <AssemblyName>BlackJack</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CardDeck.cs" />
+    <Compile Include="EmotivBlackJackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmotivBlackJackForm.Designer.cs">
+      <DependentUpon>EmotivBlackJackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hand.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EmotivBlackJackForm.resx">
+      <DependentUpon>EmotivBlackJackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cards\c1.gif" />
+    <Content Include="Cards\c10.gif" />
+    <Content Include="Cards\c2.gif" />
+    <Content Include="Cards\c3.gif" />
+    <Content Include="Cards\c4.gif" />
+    <Content Include="Cards\c5.gif" />
+    <Content Include="Cards\c6.gif" />
+    <Content Include="Cards\c7.gif" />
+    <Content Include="Cards\c8.gif" />
+    <Content Include="Cards\c9.gif" />
+    <Content Include="Cards\cj.gif" />
+    <Content Include="Cards\ck.gif" />
+    <Content Include="Cards\cq.gif" />
+    <Content Include="Cards\d1.gif" />
+    <Content Include="Cards\d10.gif" />
+    <Content Include="Cards\d2.gif" />
+    <Content Include="Cards\d3.gif" />
+    <Content Include="Cards\d4.gif" />
+    <Content Include="Cards\d5.gif" />
+    <Content Include="Cards\d6.gif" />
+    <Content Include="Cards\d7.gif" />
+    <Content Include="Cards\d8.gif" />
+    <Content Include="Cards\d9.gif" />
+    <Content Include="Cards\dj.gif" />
+    <Content Include="Cards\dk.gif" />
+    <Content Include="Cards\dq.gif" />
+    <Content Include="Cards\h1.gif" />
+    <Content Include="Cards\h10.gif" />
+    <Content Include="Cards\h2.gif" />
+    <Content Include="Cards\h3.gif" />
+    <Content Include="Cards\h4.gif" />
+    <Content Include="Cards\h5.gif" />
+    <Content Include="Cards\h6.gif" />
+    <Content Include="Cards\h7.gif" />
+    <Content Include="Cards\h8.gif" />
+    <Content Include="Cards\h9.gif" />
+    <Content Include="Cards\hj.gif" />
+    <Content Include="Cards\hk.gif" />
+    <Content Include="Cards\hq.gif" />
+    <Content Include="Cards\s1.gif" />
+    <Content Include="Cards\s10.gif" />
+    <Content Include="Cards\s2.gif" />
+    <Content Include="Cards\s3.gif" />
+    <Content Include="Cards\s4.gif" />
+    <Content Include="Cards\s5.gif" />
+    <Content Include="Cards\s6.gif" />
+    <Content Include="Cards\s7.gif" />
+    <Content Include="Cards\s8.gif" />
+    <Content Include="Cards\s9.gif" />
+    <Content Include="Cards\sj.gif" />
+    <Content Include="Cards\sk.gif" />
+    <Content Include="Cards\sq.gif" />
+    <Content Include="wsu.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logger\Logger.csproj">
+      <Project>{F1DCF402-1804-45E1-9712-D5CEA40D3EA6}</Project>
+      <Name>Logger</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

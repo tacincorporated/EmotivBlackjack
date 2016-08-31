@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmotivModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EmotivModelStoreContainer">
+          <EntitySet Name="EventType" EntityType="EmotivModel.Store.EventType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Participant" EntityType="EmotivModel.Store.Participant" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SavedEvent" EntityType="EmotivModel.Store.SavedEvent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SavedEventValue" EntityType="EmotivModel.Store.SavedEventValue" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="fk_EventTypes_pid" Association="EmotivModel.Store.fk_EventTypes_pid">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="SavedEvent" EntitySet="SavedEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventTypesV_pid" Association="EmotivModel.Store.fk_EventTypesV_pid">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="SavedEventValue" EntitySet="SavedEventValue" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_pid" Association="EmotivModel.Store.fk_users_pid">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="SavedEvent" EntitySet="SavedEvent" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usersV_pid" Association="EmotivModel.Store.fk_usersV_pid">
+            <End Role="Participant" EntitySet="Participant" />
+            <End Role="SavedEventValue" EntitySet="SavedEventValue" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="tinyint" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="SavedEvent">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="EventTime" />
+          </Key>
+          <Property Name="EventTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="UserID" Type="tinyint" Nullable="false" />
+          <Property Name="EventTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SavedEventValue">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="EventTime" />
+          </Key>
+          <Property Name="EventTypeID" Type="tinyint" Nullable="false" />
+          <Property Name="UserID" Type="tinyint" Nullable="false" />
+          <Property Name="EventTime" Type="datetime" Nullable="false" />
+          <Property Name="Value" Type="real" />
+        </EntityType>
+        <Association Name="fk_EventTypes_pid">
+          <End Role="EventType" Type="EmotivModel.Store.EventType" Multiplicity="1" />
+          <End Role="SavedEvent" Type="EmotivModel.Store.SavedEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="SavedEvent">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventTypesV_pid">
+          <End Role="EventType" Type="EmotivModel.Store.EventType" Multiplicity="1" />
+          <End Role="SavedEventValue" Type="EmotivModel.Store.SavedEventValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="SavedEventValue">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_pid">
+          <End Role="Participant" Type="EmotivModel.Store.Participant" Multiplicity="1" />
+          <End Role="SavedEvent" Type="EmotivModel.Store.SavedEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SavedEvent">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usersV_pid">
+          <End Role="Participant" Type="EmotivModel.Store.Participant" Multiplicity="1" />
+          <End Role="SavedEventValue" Type="EmotivModel.Store.SavedEventValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SavedEventValue">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmotivModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EmotivEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EventTypes" EntityType="EmotivModel.EventType" />
+          <EntitySet Name="Participants" EntityType="EmotivModel.Participant" />
+          <EntitySet Name="SavedEvents" EntityType="EmotivModel.SavedEvent" />
+          <EntitySet Name="SavedEventValues" EntityType="EmotivModel.SavedEventValue" />
+          <AssociationSet Name="fk_EventTypes_pid" Association="EmotivModel.fk_EventTypes_pid">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="SavedEvent" EntitySet="SavedEvents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_EventTypesV_pid" Association="EmotivModel.fk_EventTypesV_pid">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="SavedEventValue" EntitySet="SavedEventValues" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_pid" Association="EmotivModel.fk_users_pid">
+            <End Role="Participant" EntitySet="Participants" />
+            <End Role="SavedEvent" EntitySet="SavedEvents" />
+          </AssociationSet>
+          <AssociationSet Name="fk_usersV_pid" Association="EmotivModel.fk_usersV_pid">
+            <End Role="Participant" EntitySet="Participants" />
+            <End Role="SavedEventValue" EntitySet="SavedEventValues" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+          </Key>
+          <Property Name="EventTypeID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SavedEvents" Relationship="EmotivModel.fk_EventTypes_pid" FromRole="EventType" ToRole="SavedEvent" />
+          <NavigationProperty Name="SavedEventValues" Relationship="EmotivModel.fk_EventTypesV_pid" FromRole="EventType" ToRole="SavedEventValue" />
+        </EntityType>
+        <EntityType Name="Participant">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="SavedEvents" Relationship="EmotivModel.fk_users_pid" FromRole="Participant" ToRole="SavedEvent" />
+          <NavigationProperty Name="SavedEventValues" Relationship="EmotivModel.fk_usersV_pid" FromRole="Participant" ToRole="SavedEventValue" />
+        </EntityType>
+        <EntityType Name="SavedEvent">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="EventTime" />
+          </Key>
+          <Property Name="EventTypeID" Type="Byte" Nullable="false" />
+          <Property Name="UserID" Type="Byte" Nullable="false" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="EventType" Relationship="EmotivModel.fk_EventTypes_pid" FromRole="SavedEvent" ToRole="EventType" />
+          <NavigationProperty Name="Participant" Relationship="EmotivModel.fk_users_pid" FromRole="SavedEvent" ToRole="Participant" />
+        </EntityType>
+        <EntityType Name="SavedEventValue">
+          <Key>
+            <PropertyRef Name="EventTypeID" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="EventTime" />
+          </Key>
+          <Property Name="EventTypeID" Type="Byte" Nullable="false" />
+          <Property Name="UserID" Type="Byte" Nullable="false" />
+          <Property Name="EventTime" Type="DateTime" Nullable="false" />
+          <Property Name="Value" Type="Single" />
+          <NavigationProperty Name="EventType" Relationship="EmotivModel.fk_EventTypesV_pid" FromRole="SavedEventValue" ToRole="EventType" />
+          <NavigationProperty Name="Participant" Relationship="EmotivModel.fk_usersV_pid" FromRole="SavedEventValue" ToRole="Participant" />
+        </EntityType>
+        <Association Name="fk_EventTypes_pid">
+          <End Role="EventType" Type="EmotivModel.EventType" Multiplicity="1" />
+          <End Role="SavedEvent" Type="EmotivModel.SavedEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="SavedEvent">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_EventTypesV_pid">
+          <End Role="EventType" Type="EmotivModel.EventType" Multiplicity="1" />
+          <End Role="SavedEventValue" Type="EmotivModel.SavedEventValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeID" />
+            </Principal>
+            <Dependent Role="SavedEventValue">
+              <PropertyRef Name="EventTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_pid">
+          <End Role="Participant" Type="EmotivModel.Participant" Multiplicity="1" />
+          <End Role="SavedEvent" Type="EmotivModel.SavedEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SavedEvent">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_usersV_pid">
+          <End Role="Participant" Type="EmotivModel.Participant" Multiplicity="1" />
+          <End Role="SavedEventValue" Type="EmotivModel.SavedEventValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Participant">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SavedEventValue">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmotivModelStoreContainer" CdmEntityContainer="EmotivEntities">
+          <EntitySetMapping Name="EventTypes"><EntityTypeMapping TypeName="EmotivModel.EventType"><MappingFragment StoreEntitySet="EventType">
+            <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+            <ScalarProperty Name="EventName" ColumnName="EventName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Participants"><EntityTypeMapping TypeName="EmotivModel.Participant"><MappingFragment StoreEntitySet="Participant">
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SavedEvents"><EntityTypeMapping TypeName="EmotivModel.SavedEvent"><MappingFragment StoreEntitySet="SavedEvent">
+            <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SavedEventValues"><EntityTypeMapping TypeName="EmotivModel.SavedEventValue"><MappingFragment StoreEntitySet="SavedEventValue">
+            <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+            <ScalarProperty Name="UserID" ColumnName="UserID" />
+            <ScalarProperty Name="EventTime" ColumnName="EventTime" />
+            <ScalarProperty Name="Value" ColumnName="Value" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="EmotivDB">
+        <EntityTypeShape EntityType="EmotivModel.EventType" Width="1.5" PointX="0.75" PointY="4" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmotivModel.Participant" Width="1.5" PointX="6.25" PointY="1.625" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmotivModel.SavedEvent" Width="1.5" PointX="3" PointY="3.875" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmotivModel.SavedEventValue" Width="1.5" PointX="3" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="EmotivModel.fk_EventTypes_pid" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="4.8939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="EmotivModel.fk_EventTypesV_pid" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="4" />
+          <ConnectorPoint PointX="1.5" PointY="1.8362939453124998" />
+          <ConnectorPoint PointX="3" PointY="1.8362939453124998" />
+        </AssociationConnector>
+        <AssociationConnector Association="EmotivModel.fk_users_pid" ManuallyRouted="false">
+          <ConnectorPoint PointX="7" PointY="3.2206835937499996" />
+          <ConnectorPoint PointX="7" PointY="4.8651432291666659" />
+          <ConnectorPoint PointX="4.5" PointY="4.8651432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="EmotivModel.fk_usersV_pid" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.25" PointY="2.2737939453125" />
+          <ConnectorPoint PointX="4.5" PointY="2.2737939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
